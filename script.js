@@ -21,16 +21,20 @@ document.querySelector(".check").addEventListener("click", () => {
   const guess = Number(document.querySelector(".guess").value);
   console.log(guess, typeof guess);
 
+  //Si pas de nombre
   if (!guess) {
     document.querySelector(".message").textContent = "😅 No number!";
+
+    // Si nombre parfait
   } else if (guess === secretNumber) {
     document.querySelector(".message").textContent = "🙌 Well done !";
-    ++score;
     ++highscore;
     console.log(score);
-    document.querySelector(".score").textContent = score;
     document.querySelector(".highscore").textContent = highscore;
-  } else if (guess > secretNumber) {
+    document.querySelector("body").style.backgroundColor = "#60b347";
+  }
+  //NOMBRE TROP HAUT
+  else if (guess > secretNumber) {
     if (score > 1) {
       document.querySelector(".message").textContent = "⬇️ Too high !";
       --score;
@@ -40,7 +44,9 @@ document.querySelector(".check").addEventListener("click", () => {
       score--;
       document.querySelector(".score").textContent = score;
     }
-  } else if (guess < secretNumber) {
+  }
+  // NOMBRE TROP BAS
+  else if (guess < secretNumber) {
     if (score > 1) {
       document.querySelector(".message").textContent = "⬆️ Too low !";
       --score;
