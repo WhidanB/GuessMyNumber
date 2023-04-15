@@ -5,7 +5,7 @@ document.querySelector('.message').textContent = '🙌 Correct Number!';
 
 
 
-document.querySelector('.guess').value=23;
+
 console.log(document.querySelector('.guess').value);
 */
 
@@ -27,12 +27,17 @@ document.querySelector(".check").addEventListener("click", () => {
     // Si nombre parfait
   } else if (guess === secretNumber) {
     document.querySelector(".message").textContent = "🙌 Well done !";
-    ++highscore;
     console.log(score);
-    document.querySelector(".highscore").textContent = highscore;
     document.querySelector("body").style.backgroundColor = "#60b347";
     document.querySelector(".number").style.width = "30rem";
     document.querySelector(".number").textContent = secretNumber;
+    if (highscore === 0) {
+      highscore = score;
+      document.querySelector(".highscore").textContent = highscore;
+    } else if (score > highscore) {
+      highscore = score;
+      document.querySelector(".highscore").textContent = highscore;
+    }
   }
   //NOMBRE TROP HAUT
   else if (guess > secretNumber) {
@@ -68,6 +73,7 @@ document.querySelector(".again").addEventListener("click", () => {
   document.querySelector(".message").textContent = "Start guessing...";
   document.querySelector(".score").textContent = score;
   document.querySelector(".number").textContent = "?";
+  document.querySelector(".guess").value = "";
   document.querySelector("body").style.backgroundColor = "#222";
   document.querySelector(".number").style.width = "15rem";
 });
